@@ -3,26 +3,20 @@
  <head>
  	<meta charset="utf-8">
  	<title>reactPartice</title>
-
  	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
-
-
-    <style>
-		list-style{none;}  
-    </style>
+    <link rel="stylesheet" href="./mycss.css">
  </head>
  <body>
 
- <div id="left"></div>
- <div id="right"></div>
+<div id="left"></div>
+<div id="right"></div>
 
- <script type="text/babel">
-
- var coder = [
+<script type="text/babel">
+var coder = [
  					{title:"mac开发工程师",num:1},
  					{title:"iosApp测试工程师",num:2},
  					{title:"Android远程控制工程师",num:3},
@@ -30,7 +24,7 @@
  					{title:"Android多媒体软件开发工程师",num:5},
 
  				]
- 
+
 var designer = [
 					
 					{title:"网页设计师",mum:6},
@@ -42,13 +36,11 @@ var designer = [
 // 就是最base的一个 结构 ，input，name,num
 var Comment = React.createClass({
 
-	
-
 	clciked:function(){
 		this.state.checked  = !this.state.checked;
-		alert(this.state.checked);
+		this.props.checked = this.state.checked 
+		//alert(this.state.checked);
 	},
-
 	render:function(){
 		return(
 			<li className="t">
@@ -56,7 +48,7 @@ var Comment = React.createClass({
 				<span className="commentAuthor">
 					{this.props.title}
 				</span>
-				<span>num:{this.props.number}</span>
+				<span className="number">num:{this.props.number}</span>
 			</li>
 			)
 	}
@@ -64,7 +56,6 @@ var Comment = React.createClass({
 
 var CommentList1 = React.createClass({
 	loop:function(){
-		
 		//alert(this.state.checked)
 		this.state.checked  = !this.state.checked;
 		alert(this.state.checked);
@@ -77,12 +68,12 @@ var CommentList1 = React.createClass({
 
 	getInitialState:function(){
 
-		return {checked:false}
+		return {checked:this.props.checked}
 	},
 	render:function(){
 		
 			return (
-					<div className="commentList">
+					<div className="commentList1">
 					<h1> <input type="checkbox"  onChange={this.loop}  /> nionbabab </h1>
 						<ul>
 							<Comment title={coder[0].title} number={coder[0].num} />
@@ -96,25 +87,15 @@ var CommentList1 = React.createClass({
 					)
 	}
 })
-/*ReactDOM.render(
-	<CommentList />,
-	document.getElementById("left")
-	)
-*/
 
 var CommentList2 = React.createClass({
 	loop:function(){
-		
-		//alert(this.state.checked)
 		this.state.checked  = !this.state.checked;
 		this.setState({"checked": this.state.checked })
-		alert(this.state.checked);
-
 	},
 
 	getInitialState:function(){
-
-		return {checked:false}
+		return {checked:this.props.checked}
 	},
 	render:function(){
 		
@@ -135,12 +116,27 @@ var CommentList2 = React.createClass({
 })
 
 var CommentBox = React.createClass({
+
+	getInitialState:function(){
+
+		return {"checked":false}
+	},
+	clearAll:function(){
+		alert("cnm");
+		this.state.checked  = !this.state.checked;
+		this.setState({"checked": this.state.checked })
+	},
+
 	render:function(){
 		return (
-			<div>
+			<div id="contentBlock">
+			<div id="header">
+			<h1 >招聘职位</h1>
+			<span id="clearAll" onClick={this.clearAll}>清空</span>
+			</div> 
 			<CommentList1 />
 			
-			<CommentList2 />
+			<CommentList2 checked={this.state.checked}/>
 			</div>
 			);
 	}

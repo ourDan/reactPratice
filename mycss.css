@@ -1,0 +1,60 @@
+/*#627E8C*/
+body{
+	margin: 0;
+	padding:0;
+	height: 100%;
+}
+
+#contentBlock{
+	width: 400px;
+	margin: 0 auto;
+}
+.number{
+	float: right;
+}
+
+li{
+	
+	list-style-type:none;
+	height: 40px;
+	font-size: 16px;
+}
+
+
+#left{
+	background-color: #627E8C;
+	width: 500px;
+	height: 100%;
+}
+#right{
+
+	background-color: darkgray;
+
+}
+
+.title{
+	font-color:#627E8C;
+}
+
+span,h1,p{
+	color:#D6DDE1;
+	margin: 0
+}
+
+.commentList2 h1,.commentList1 h1{
+	color:#627E8C;
+}
+
+#header{
+	height: 60px;
+}
+
+#header h1,#header span{
+	display: inline-block;
+	line-height: 60px;
+}
+
+#clearAll{
+	float: right;
+	line-height: 60px
+}
