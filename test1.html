@@ -42,10 +42,7 @@ var designer = [
 // 就是最base的一个 结构 ，input，name,num
 var Comment = React.createClass({
 
-	getInitialState:function(){
-
-		return {checked:false}
-	},
+	
 
 	clciked:function(){
 		this.state.checked  = !this.state.checked;
@@ -55,7 +52,7 @@ var Comment = React.createClass({
 	render:function(){
 		return(
 			<li className="t">
-				<input type="checkbox" checked={this.state.clicked} onChange={this.clciked}/>
+				<input type="checkbox" checked={this.props.checked} onChange={this.clciked}/>
 				<span className="commentAuthor">
 					{this.props.title}
 				</span>
@@ -110,12 +107,9 @@ var CommentList2 = React.createClass({
 		
 		//alert(this.state.checked)
 		this.state.checked  = !this.state.checked;
+		this.setState({"checked": this.state.checked })
 		alert(this.state.checked);
 
-		// 该影响所有的子组件
-		React.Children.forEach(function(){
-          alert(child.state)
-        });
 	},
 
 	getInitialState:function(){
@@ -128,10 +122,10 @@ var CommentList2 = React.createClass({
 					<div className="commentList2">
 					<h1> <input type="checkbox"  onChange={this.loop}  /> nionbabab </h1>
 						<ul>
-							<Comment title={designer[0].title} number={designer[0].num} />
-							<Comment title={designer[1].title} number={designer[1].num} />
-							<Comment title={designer[2].title} number={designer[2].num} />
-							<Comment title={designer[3].title} number={designer[3].num} />
+							<Comment title={designer[0].title} number={designer[0].num} checked={this.state.checked} />
+							<Comment title={designer[1].title} number={designer[1].num} checked={this.state.checked} />
+							<Comment title={designer[2].title} number={designer[2].num} checked={this.state.checked} />
+							<Comment title={designer[3].title} number={designer[3].num} checked={this.state.checked} />
 							
 						</ul>
 
