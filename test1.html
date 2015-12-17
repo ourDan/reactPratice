@@ -1,0 +1,94 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+ 	<meta charset="utf-8">
+ 	<title>reactPartice</title>
+
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+ </head>
+ <body>
+
+ <div id="left"></div>
+ <div id="right"></div>
+
+ <script type="text/babel">
+ var coder = [
+ 					{title:"mac开发工程师",num:1},
+ 					{title:"iosApp测试工程师",num:2},
+ 					{title:"Android远程控制工程师",num:3},
+ 					{title:"web前端工程师",num:4},
+ 					{title:"Android多媒体软件开发工程师",num:5},
+
+ 				]
+ 
+var desnger = [
+					
+					{title:"网页设计师",mum:6},
+					{title:"ID/工业设计工程师",num:7},
+					{title:"视觉设计师/GUI界面设计师",num:8},
+					{title:"平面设计师",num:9}
+
+			  ]
+// 就是最base的一个 结构 ，input，name,num
+var Comment = React.createClass({
+
+	render:function(){
+		return(
+			<li className="t">
+				<input type="checkbox" />
+				<span className="commentAuthor">
+					mingcheng
+				</span>
+				<span>num:112</span>
+			</li>
+			)
+	}
+})
+
+var CommentList = React.createClass({
+
+	render:function(){
+		
+			return (
+					<div className="commentList">
+					<h1> <input type="checkbox"  /> nionbabab </h1>
+						<ul>
+							<Comment />
+							<Comment />
+							<Comment />
+						</ul>
+
+					</div>
+					)
+	}
+})
+/*ReactDOM.render(
+	<CommentList />,
+	document.getElementById("left")
+	)
+*/
+
+var CommentBox = React.createClass({
+	render:function(){
+		return (
+
+			<CommentList />
+			// 这里为什么只能写一个CommentList?
+			)
+	}
+})
+ReactDOM.render(
+	<CommentBox />,
+	document.getElementById("left")
+	)
+
+
+
+
+ </script>
+ </body>
+ </html>
