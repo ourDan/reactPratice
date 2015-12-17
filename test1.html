@@ -9,6 +9,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+
+
+    <style>
+		list-style{none;}  
+    </style>
  </head>
  <body>
 
@@ -16,6 +21,7 @@
  <div id="right"></div>
 
  <script type="text/babel">
+
  var coder = [
  					{title:"mac开发工程师",num:1},
  					{title:"iosApp测试工程师",num:2},
@@ -25,7 +31,7 @@
 
  				]
  
-var desnger = [
+var designer = [
 					
 					{title:"网页设计师",mum:6},
 					{title:"ID/工业设计工程师",num:7},
@@ -36,30 +42,57 @@ var desnger = [
 // 就是最base的一个 结构 ，input，name,num
 var Comment = React.createClass({
 
+	getInitialState:function(){
+
+		return {checked:false}
+	},
+
+	clciked:function(){
+		this.state.checked  = !this.state.checked;
+		alert(this.state.checked);
+	},
+
 	render:function(){
 		return(
 			<li className="t">
-				<input type="checkbox" />
+				<input type="checkbox" checked={this.state.clicked} onChange={this.clciked}/>
 				<span className="commentAuthor">
-					mingcheng
+					{this.props.title}
 				</span>
-				<span>num:112</span>
+				<span>num:{this.props.number}</span>
 			</li>
 			)
 	}
 })
 
-var CommentList = React.createClass({
+var CommentList1 = React.createClass({
+	loop:function(){
+		
+		//alert(this.state.checked)
+		this.state.checked  = !this.state.checked;
+		alert(this.state.checked);
 
+		// 该影响所有的子组件
+		React.Children.forEach(function(){
+          alert(child.state)
+        });
+	},
+
+	getInitialState:function(){
+
+		return {checked:false}
+	},
 	render:function(){
 		
 			return (
 					<div className="commentList">
-					<h1> <input type="checkbox"  /> nionbabab </h1>
+					<h1> <input type="checkbox"  onChange={this.loop}  /> nionbabab </h1>
 						<ul>
-							<Comment />
-							<Comment />
-							<Comment />
+							<Comment title={coder[0].title} number={coder[0].num} />
+							<Comment title={coder[1].title} number={coder[1].num} />
+							<Comment title={coder[2].title} number={coder[2].num} />
+							<Comment title={coder[3].title} number={coder[3].num} />
+							<Comment title={coder[4].title} number={coder[4].num} />
 						</ul>
 
 					</div>
@@ -72,13 +105,50 @@ var CommentList = React.createClass({
 	)
 */
 
+var CommentList2 = React.createClass({
+	loop:function(){
+		
+		//alert(this.state.checked)
+		this.state.checked  = !this.state.checked;
+		alert(this.state.checked);
+
+		// 该影响所有的子组件
+		React.Children.forEach(function(){
+          alert(child.state)
+        });
+	},
+
+	getInitialState:function(){
+
+		return {checked:false}
+	},
+	render:function(){
+		
+			return (
+					<div className="commentList2">
+					<h1> <input type="checkbox"  onChange={this.loop}  /> nionbabab </h1>
+						<ul>
+							<Comment title={designer[0].title} number={designer[0].num} />
+							<Comment title={designer[1].title} number={designer[1].num} />
+							<Comment title={designer[2].title} number={designer[2].num} />
+							<Comment title={designer[3].title} number={designer[3].num} />
+							
+						</ul>
+
+					</div>
+					)
+	}
+})
+
 var CommentBox = React.createClass({
 	render:function(){
 		return (
-
-			<CommentList />
-			// 这里为什么只能写一个CommentList?
-			)
+			<div>
+			<CommentList1 />
+			
+			<CommentList2 />
+			</div>
+			);
 	}
 })
 ReactDOM.render(
