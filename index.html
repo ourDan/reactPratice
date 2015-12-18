@@ -1,0 +1,149 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+ 	<meta charset="utf-8">
+ 	<title>reactPartice</title>
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+    <link rel="stylesheet" href="./mycss.css">
+ </head>
+ <body>
+
+<div id="left"></div>
+<div id="right"></div>
+
+<script type="text/babel">
+var coder = [
+ 					{title:"mac开发工程师",num:9},
+ 					{title:"iosApp测试工程师",num:17},
+ 					{title:"Android远程控制工程师",num:61},
+ 					{title:"web前端工程师",num:31},
+ 					{title:"Android多媒体软件开发工程师",num:2},
+ 					{title:"工程研发部门",num:120}
+ 				]
+var designer = [	
+					{title:"网页设计师",num:47},
+					{title:"ID/工业设计工程师",num:39},
+					{title:"视觉设计师/GUI界面设计师",num:32},
+					{title:"平面设计师",num:8},
+					{title:"产品设计部",num:136}
+			  ]
+// 就是最base的一个 结构 ，input，name,num
+var Comment = React.createClass({
+	getInitialState:function(){
+		return {checked:this.props.check}
+	},
+	clciked:function(){
+		this.state.checked  = !this.state.checked;
+		console.log(this.state.checked)
+		this.props.check = this.state.checked 
+		//alert(this.state.checked);
+	},
+	render:function(){
+		return(
+			<li className="t">
+				<input type="checkbox" checked={this.props.check} onChange={this.clciked}/>
+				<span className="commentAuthor">
+					{this.props.title}
+				</span>
+				<span className="number">{this.props.number}</span>
+			</li>
+			)
+	}
+})
+
+
+
+
+var CommentList1 = React.createClass({
+	loop:function(){
+		this.state.check = !this.state.check;
+		this.setState({"check": this.state.check })
+	},
+	getInitialState:function(){
+		return {check:this.props.check}
+	},
+	render:function(){
+			return (
+					<div className="commentList">
+					<h1 className="bigName"> <input type="checkbox"  check={this.props.check} onChange={this.loop}  /> 
+					{this.props.arr[5].title} </h1>
+					<p className="bigNum">{this.props.arr[5].num}</p>
+						<ul>
+							<Comment title={this.props.arr[0].title} number={this.props.arr[0].num} check={this.state.check} />
+							<Comment title={this.props.arr[1].title} number={this.props.arr[1].num} check={this.state.check} />
+							<Comment title={this.props.arr[2].title} number={this.props.arr[2].num} check={this.state.check} />
+							<Comment title={this.props.arr[3].title} number={this.props.arr[3].num} check={this.state.check} />
+							<Comment title={this.props.arr[4].title} number={this.props.arr[4].num} check={this.state.check} />
+						</ul>
+					</div>
+					)
+	}
+})
+
+var CommentList2 = React.createClass({
+	loop:function(){
+		this.state.check = !this.state.check;
+		this.setState({"check": this.state.check })
+	},
+	getInitialState:function(){
+		return {check:this.props.check}
+	},
+	render:function(){
+			return (
+					<div className="commentList">
+					<h1 className="bigName"> <input type="checkbox"  check={this.props.check} onChange={this.loop}  /> 
+					{this.props.arr[4].title} </h1>
+					<p className="bigNum">{this.props.arr[4].num}</p>
+						<ul>
+							<Comment title={this.props.arr[0].title} number={this.props.arr[0].num} check={this.state.check} />
+							<Comment title={this.props.arr[1].title} number={this.props.arr[1].num} check={this.state.check} />
+							<Comment title={this.props.arr[2].title} number={this.props.arr[2].num} check={this.state.check} />
+							<Comment title={this.props.arr[3].title} number={this.props.arr[3].num} check={this.state.check} />
+							
+						</ul>
+					</div>
+					)
+	}
+})
+
+
+var CommentBox = React.createClass({
+
+	getInitialState:function(){
+		return {"check":false}
+	},
+	clearAll:function(){
+		//alert(this.state.check);
+		this.state.check  = !this.state.check ;
+		this.setState({"check": this.state.check });
+		//alert(this.state.check);
+
+		location.reload();// 这个方法肯定是不对的，因为把整个界面重新刷新了 ，可是现我不能render这个组件
+
+	},
+	render:function(){
+
+		return (
+			<div id="contentBlock">
+			<div id="header">
+			<h1>招聘职位</h1>
+			<span id="clearAll" onClick={this.clearAll} >清空</span>
+			</div> 
+			<CommentList1 check={this.state.check} arr={coder}/>
+			<CommentList2 check={this.state.check} arr={designer}/>
+			</div>
+			);
+	}
+})
+ReactDOM.render(
+	<CommentBox />,
+	document.getElementById("left")
+	)
+
+ </script>
+ </body>
+ </html>
