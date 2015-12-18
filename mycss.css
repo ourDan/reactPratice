@@ -6,7 +6,7 @@ body{
 }
 
 #contentBlock{
-	width: 400px;
+	width: 360px;
 	margin: 0 auto;
 }
 .number{
@@ -23,7 +23,7 @@ li{
 
 #left{
 	background-color: #627E8C;
-	width: 500px;
+	width: 460px;
 	height: 100%;
 }
 #right{
@@ -41,12 +41,16 @@ span,h1,p{
 	margin: 0
 }
 
-.commentList h1,.commentList1 h1{
-	color:#ffffff;
+.commentList h1 span,.commentList h1 span{
+	color:white;
 }
 
 #header{
 	height: 60px;
+}
+
+#header span{
+	color: white
 }
 
 #header h1,#header span{
@@ -57,4 +61,24 @@ span,h1,p{
 #clearAll{
 	float: right;
 	line-height: 60px
+}
+.bigName,.bigNum{
+	display: inline-block;
+	height: 30px;
+	color: white;
+
+}
+.bigName{
+	font-size: 20px;
+}
+
+.bigNum{
+	float: right;
+	background-color: #566E79;
+	width: 60px;
+	height: 24px;
+	border-radius: 20px;
+	text-align: center;
+	line-height: 24px;
+	margin-right:-20px; 
 }
